@@ -39,11 +39,13 @@
     		
 		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
-    		<groupId>org.hsqldb</groupId>
-    		<artifactId>hsqldb</artifactId>
-    		<scope>runtime</scope>
+    		<groupId>org.projectlombok</groupId>
+    		<artifactId>lombok</artifactId>
+    		<scope>provided</scope>
 		</dependency>
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
