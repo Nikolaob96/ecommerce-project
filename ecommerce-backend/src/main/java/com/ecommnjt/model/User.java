@@ -1,15 +1,12 @@
 package com.ecommnjt.model;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import javax.persistence.Transient;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,8 +16,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class User implements UserDetails {
+public class User {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
 	@Getter @Setter
@@ -31,35 +32,9 @@ public class User implements UserDetails {
 	private String password;
 	@Getter @Setter
 	private String email;
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	@Getter @Setter
+	@Transient
+	private Set<Role> roles = new HashSet<>();
 	
-	
-	public List<String> getRoles() {
-		return new ArrayList<String>();
-	}
 	
 }

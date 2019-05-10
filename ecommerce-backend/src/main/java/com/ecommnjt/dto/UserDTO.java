@@ -1,5 +1,8 @@
 package com.ecommnjt.dto;
 
+import java.util.Set;
+
+import com.ecommnjt.model.Role;
 import com.ecommnjt.model.User;
 
 import lombok.Getter;
@@ -17,6 +20,8 @@ public class UserDTO {
 	private String password;
 	@Getter @Setter
 	private String email;
+	@Getter @Setter
+	private Set<Role> roles;
 	
 	public UserDTO(User user) {
 		if(user.getId() != 0) {
@@ -28,7 +33,7 @@ public class UserDTO {
 	}
 	
 	public static User getUser(UserDTO user) {
-		return new User(user.getId(),user.getUsername(),user.getPassword(),user.getEmail());
+		return new User(user.getId(),user.getUsername(),user.getPassword(),user.getEmail(), user.getRoles());
 	}
 	
 }

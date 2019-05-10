@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +18,7 @@ import com.ecommnjt.dto.LoginDTO;
 import com.ecommnjt.dto.UserDTO;
 import com.ecommnjt.model.User;
 import com.ecommnjt.security.JwtTokenProvider;
+import com.ecommnjt.service.UserDetailsServiceImpl;
 import com.ecommnjt.service.UserService;
 
 @RestController
@@ -35,19 +33,23 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private UserDetailsServiceImpl userDetailsServiceImpl;
 
 	@PostMapping("/login")
 	public ResponseEntity<Map<Object, Object>> login(@RequestBody LoginDTO loginDTO) {
+		Map<Object, Object> model = new HashMap<>();
 		try {
 		String username = loginDTO.getUsername();
 		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, loginDTO.getPassword()));
-		String token = jwtTokenProvider.createToken(username, this.userService.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Username " + username + "not found")).getRoles());
-        Map<Object, Object> model = new HashMap<>();
-        model.put("username", username);
+		String token = jwtTokenProvider.createToken(userDetailsServiceImpl.loadUserByUsername(username));
+		
         model.put("token", token);
 		return new ResponseEntity<>(model, HttpStatus.OK);
-		} catch (AuthenticationException e) {
-            throw new BadCredentialsException("Invalid username/password supplied");
+		} catch (Exception e) {
+			model.put("error", "Invalid Login");
+            return new ResponseEntity<>(model, HttpStatus.BAD_REQUEST);
         }
 	}
 	

@@ -2,7 +2,6 @@ package com.ecommnjt.security;
 
 import java.util.Base64;
 import java.util.Date;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
@@ -33,9 +32,9 @@ public class JwtTokenProvider {
     protected void init() {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
-    public String createToken(String username, List<String> roles) {
-        Claims claims = Jwts.claims().setSubject(username);
-        claims.put("roles", roles);
+    public String createToken(UserDetails userDetails) {
+        Claims claims = Jwts.claims().setSubject(userDetails.getUsername());
+        claims.put("roles", userDetails.getAuthorities());
         Date now = new Date();
         Date validity = new Date(now.getTime() + validityInMilliseconds);
         return Jwts.builder()//
