@@ -46,4 +46,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .apply(new JwtConfigurer(jwtTokenProvider));
         //@formatter:on
     }
+    
+    
 }
