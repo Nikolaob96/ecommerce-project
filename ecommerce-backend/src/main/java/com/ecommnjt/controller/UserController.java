@@ -41,18 +41,18 @@ public class UserController {
 	
 	@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 	@PostMapping("/login")
-	public ResponseEntity<Map<Object, Object>> login(@RequestBody LoginDTO loginDTO) {
-		Map<Object, Object> model = new HashMap<>();
+	public ResponseEntity<String> login(@RequestBody LoginDTO loginDTO) {
+		//Map<Object, Object> model = new HashMap<>();
 		try {
 		String username = loginDTO.getUsername();
 		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, loginDTO.getPassword()));
 		String token = jwtTokenProvider.createToken(userDetailsServiceImpl.loadUserByUsername(username));
 		
-        model.put("token", token);
-		return new ResponseEntity<>(model, HttpStatus.OK);
+        //model.put("token", token);
+		return new ResponseEntity<>(token, HttpStatus.OK);
 		} catch (Exception e) {
-			model.put("error", "Invalid Login");
-            return new ResponseEntity<>(model, HttpStatus.BAD_REQUEST);
+			//model.put("error", "Invalid Login");
+            return new ResponseEntity<>("error", HttpStatus.BAD_REQUEST);
         }
 	}
 	
