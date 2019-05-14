@@ -25,4 +25,8 @@ public class ProductService {
 	public Product getProduct(int productID) {
 		return productRepository.getOne(productID);
 	}
+	
+	public void updateProduct(Product product) {
+		productRepository.save(product);
+	}
 }
