@@ -1,8 +1,10 @@
 package com.ecommnjt.dto;
 
 import java.util.Date;
+import java.util.List;
 
 import com.ecommnjt.model.ShoppingCart;
+import com.ecommnjt.model.ShoppingCartItem;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,15 +19,18 @@ public class ShoppingCartDTO {
 	private int id;
 	@Getter @Setter
 	private Date dateCreated;
+	@Getter @Setter
+	private List<ShoppingCartItem> items;
 	
 	public ShoppingCartDTO(ShoppingCart shoppingCart) {
 		if(shoppingCart.getId() != 0) {
 			this.id = shoppingCart.getId();
 		}
 		this.dateCreated = shoppingCart.getDateCreated();
+		this.items = shoppingCart.getCartItem();
 	}
 	
 	public ShoppingCart getShoppingCart(ShoppingCartDTO shoppingCartDTO) {
-		return new ShoppingCart(shoppingCartDTO.getId(), shoppingCartDTO.getDateCreated());
+		return new ShoppingCart(shoppingCartDTO.getId(), shoppingCartDTO.getDateCreated(), shoppingCartDTO.getItems());
 	}
 }

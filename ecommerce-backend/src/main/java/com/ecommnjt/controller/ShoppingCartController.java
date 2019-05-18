@@ -33,7 +33,7 @@ public class ShoppingCartController {
 		return new ResponseEntity<>(shoppingCartDTO, HttpStatus.OK);
 	}
 	
-	@GetMapping("/ShoppingCart")
+	@GetMapping("/ShoppingCart/{cartId}")
 	@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 	public ResponseEntity<ShoppingCartDTO> getShoppingCart(@PathVariable int cartId) {
 		ShoppingCart shoppingCart = shoppingCartService.getShoppingCart(cartId);
