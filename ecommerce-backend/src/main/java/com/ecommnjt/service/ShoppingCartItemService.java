@@ -50,6 +50,12 @@ public class ShoppingCartItemService {
 		cartRepository.clearCart(cartId);
 		
 	}
+	
+	@Transactional
+	public void deleteItem(int cartId, int productId) {
+		cartRepository.deleteItem(cartId, productId);
+		
+	}
 
 	
 

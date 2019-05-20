@@ -63,5 +63,12 @@ public class ShoppingCartItemController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
+	@DeleteMapping("/ShoppingCartItems/{cartId}/{itemId}")
+	@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+	public ResponseEntity<ShoppingCartDTO> clearShoppingCart(@PathVariable("cartId") int cartId, @PathVariable("itemId") int productId) {
+		cartItemService.deleteItem(cartId, productId);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
 	
 }
