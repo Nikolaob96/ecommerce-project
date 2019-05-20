@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ecommnjt.dto.ShoppingCartItemDTO;
 import com.ecommnjt.model.ShoppingCartItem;
@@ -42,6 +43,12 @@ public class ShoppingCartItemService {
 			shoppingCartItem = cartItem.get();
 		}
 		return new ShoppingCartItemDTO(shoppingCartItem);
+	}
+	
+	@Transactional
+	public void clearShoppingCart(int cartId) {
+		cartRepository.clearCart(cartId);
+		
 	}
 
 	

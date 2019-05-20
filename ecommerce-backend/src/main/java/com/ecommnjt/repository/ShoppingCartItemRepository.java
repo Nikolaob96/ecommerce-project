@@ -18,5 +18,7 @@ public interface ShoppingCartItemRepository extends JpaRepository<ShoppingCartIt
 	@Query(value = "insert into shoppingcartitem(id,quantity,shoppingcartid,productid) values (:id, :quantity, :cartid, :productid)",nativeQuery = true)
 	void saveCartItem(@Param("id") int id, @Param("productid") int productid, @Param("cartid") int cartid, @Param("quantity") int quantity);
 
-	
+	@Modifying
+	@Query(value = "delete s from shoppingcartitem s where shoppingcartid=:id",nativeQuery = true)
+	void clearCart(@Param("id") int id);
 }
