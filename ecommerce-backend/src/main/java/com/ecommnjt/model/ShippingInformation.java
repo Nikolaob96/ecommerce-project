@@ -10,14 +10,23 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
-public class Category {
+public class ShippingInformation {
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Getter @Setter
 	private int id;
 	@Getter @Setter
 	private String name;
+	@Getter @Setter
+	private String addressLineOne;
+	@Getter @Setter
+	private String addressLineTwo;
+	@Getter @Setter
+	private String city;
+	@Getter @Setter
+	private String telephone;
 }

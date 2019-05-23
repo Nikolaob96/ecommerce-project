@@ -1,5 +1,6 @@
 package com.ecommnjt.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,7 +30,7 @@ public class Product {
 	private int price;
 	@Getter @Setter
 	private String image;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn
     @Getter @Setter
 	private Category category;

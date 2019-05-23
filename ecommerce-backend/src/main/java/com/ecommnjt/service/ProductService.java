@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ecommnjt.model.Category;
 import com.ecommnjt.model.Product;
+import com.ecommnjt.repository.CategoryRepository;
 import com.ecommnjt.repository.ProductRepository;
 
 @Service
@@ -13,6 +15,9 @@ public class ProductService {
 	
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private CategoryRepository categoryRepository;
 	
 	public void addProduct(Product product) {
 		productRepository.save(product);
@@ -27,6 +32,10 @@ public class ProductService {
 	}
 	
 	public void updateProduct(Product product) {
+		if(product.getCategory().getId() == 0) {
+			Category category = categoryRepository.findByName(product.getCategory().getName());
+			product.setCategory(category);
+		}
 		productRepository.save(product);
 	}
 	
