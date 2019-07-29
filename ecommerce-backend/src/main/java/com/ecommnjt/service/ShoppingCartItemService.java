@@ -20,7 +20,7 @@ public class ShoppingCartItemService {
 		Optional<ShoppingCartItem> cartItem = cartRepository.findByCartAndProduct(cartId, productId);
 		
 		ShoppingCartItem shoppingCartItem = null;
-		if(!cartItem.isEmpty()) {
+		if(cartItem.isPresent()) {
 			shoppingCartItem = cartItem.get();
 		}
 		return new ShoppingCartItemDTO(shoppingCartItem);
@@ -39,7 +39,7 @@ public class ShoppingCartItemService {
 		Optional<ShoppingCartItem> cartItem = cartRepository.findById(id);
 		
 		ShoppingCartItem shoppingCartItem = null;
-		if(!cartItem.isEmpty()) {
+		if(cartItem.isPresent()) {
 			shoppingCartItem = cartItem.get();
 		}
 		return new ShoppingCartItemDTO(shoppingCartItem);
