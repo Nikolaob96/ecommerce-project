@@ -3,6 +3,7 @@ package com.ecommnjt.model;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -28,6 +29,7 @@ public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Getter @Setter
+	@Column(name="orderid")
 	private int orderId;
 	
 	@Getter @Setter
@@ -35,9 +37,9 @@ public class Order {
 	@JoinColumn(name = "shippingid")
 	private ShippingInformation shippingInformation;
 	
-//	@Getter @Setter
-	
-//	private Date dateCreated;
+	@Getter @Setter
+	@Column(name="datecreated")
+    private Date dateCreated;
 	
 	@Getter @Setter
 	@OneToOne(cascade = {CascadeType.MERGE})
@@ -48,4 +50,8 @@ public class Order {
 	@OneToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name = "shoppingcartid")
 	private ShoppingCart cart;
+	
+	@Getter @Setter
+	@Column(name="totalprice")
+	private int totalPrice;
 }

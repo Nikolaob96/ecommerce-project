@@ -1,8 +1,14 @@
 package com.ecommnjt.service;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ecommnjt.dto.MyOrderDTO;
 import com.ecommnjt.dto.OrderDTO;
 import com.ecommnjt.model.Order;
 import com.ecommnjt.repository.OrderRepository;
@@ -18,5 +24,17 @@ public class OrderService {
 		Order or = order.getOrder(order);
 		orderRepository.save(or);
 		return or.getOrderId();
+	}
+
+
+	public List<MyOrderDTO> getOrdersByUser(String username) {
+		List<Order> orders = orderRepository.findOrdersByUser(username);
+		
+		List<MyOrderDTO> myOrders = new ArrayList<>();
+		
+		for (Order order : orders) {
+			myOrders.add(new MyOrderDTO(order));
+		}
+		return myOrders;
 	}
 }
