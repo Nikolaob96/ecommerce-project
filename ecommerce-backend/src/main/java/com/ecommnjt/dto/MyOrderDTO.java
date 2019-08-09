@@ -21,13 +21,13 @@ public class MyOrderDTO {
 	@Getter @Setter
 	private int orderTotal;
 	@Getter @Setter
-	private OrderStatus orderStatus;
+	private String orderStatus;
 	
 	public MyOrderDTO(Order order) {
 		this.orderId = order.getOrderId();
 		dateCreated = order.getDateCreated();
 		this.shipTo = order.getShippingInformation().getName();
 		this.orderTotal = order.getTotalPrice();
-		this.orderStatus = OrderStatus.PENDING;
+		this.orderStatus = order.getOrderStatus().toString();
 	}
 }

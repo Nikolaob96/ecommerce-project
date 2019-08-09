@@ -39,4 +39,11 @@ public class OrderController {
 
 		return new ResponseEntity<List<MyOrderDTO>>(ordersList, HttpStatus.OK);
 	}
+	
+	@GetMapping("/Orders")
+	private ResponseEntity<List<MyOrderDTO>> getOrders() {
+		List<MyOrderDTO> ordersList = orderService.getOrders();
+		
+		return new ResponseEntity<List<MyOrderDTO>>(ordersList, HttpStatus.OK);
+	}
 }

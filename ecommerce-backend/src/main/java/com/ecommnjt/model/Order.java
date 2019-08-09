@@ -54,4 +54,8 @@ public class Order {
 	@Getter @Setter
 	@Column(name="totalprice")
 	private int totalPrice;
+	
+	@Getter @Setter
+	@Column(name = "orderstatus")
+	private OrderStatus orderStatus;
 }
