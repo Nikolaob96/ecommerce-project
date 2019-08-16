@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommnjt.dto.CategoryDTO;
 import com.ecommnjt.model.Category;
-import com.ecommnjt.service.CategoryService;
+import com.ecommnjt.service.CategoryServiceImpl;
+
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/api")
@@ -21,9 +23,12 @@ import com.ecommnjt.service.CategoryService;
 public class CategoryController {
 	
 	@Autowired
-	private CategoryService categoryService;
+	private CategoryServiceImpl categoryService;
 	
 	@GetMapping("/getCategories")
+	@ApiOperation(value = "Returns all existing categories of the products",
+			notes = "TO DO...",
+			response = CategoryDTO.class, responseContainer = "List")
 	@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 	private ResponseEntity<List<CategoryDTO>> getCategories() {
 		List<Category> categories = categoryService.getAll();
