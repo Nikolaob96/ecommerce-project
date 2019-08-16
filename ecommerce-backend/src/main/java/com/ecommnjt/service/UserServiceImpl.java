@@ -11,7 +11,7 @@ import com.ecommnjt.model.User;
 import com.ecommnjt.repository.UserRepository;
 
 @Service
-public class UserService {
+public class UserServiceImpl {
 	
 	@Autowired
 	private UserRepository userRepository;

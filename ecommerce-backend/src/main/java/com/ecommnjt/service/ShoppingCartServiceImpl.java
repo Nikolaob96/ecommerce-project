@@ -9,7 +9,7 @@ import com.ecommnjt.model.ShoppingCart;
 import com.ecommnjt.repository.ShoppingCartRepository;
 
 @Service
-public class ShoppingCartService {
+public class ShoppingCartServiceImpl implements ShoppingCartService {
 	
 	@Autowired
 	private ShoppingCartRepository shoppingCartRepository;

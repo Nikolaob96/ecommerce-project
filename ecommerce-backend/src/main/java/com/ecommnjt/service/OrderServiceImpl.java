@@ -15,7 +15,7 @@ import com.ecommnjt.model.OrderStatus;
 import com.ecommnjt.repository.OrderRepository;
 
 @Service
-public class OrderService {
+public class OrderServiceImpl implements OrderService {
 
 	@Autowired
 	private OrderRepository orderRepository;

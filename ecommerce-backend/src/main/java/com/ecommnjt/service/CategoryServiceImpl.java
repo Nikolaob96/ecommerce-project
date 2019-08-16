@@ -9,7 +9,7 @@ import com.ecommnjt.model.Category;
 import com.ecommnjt.repository.CategoryRepository;
 
 @Service
-public class CategoryService {
+public class CategoryServiceImpl implements CategoryService {
 
 	@Autowired
 	private CategoryRepository categoryRepository;

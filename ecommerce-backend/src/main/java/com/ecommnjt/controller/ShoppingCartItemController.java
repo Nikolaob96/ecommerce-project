@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ecommnjt.dto.ShoppingCartDTO;
 import com.ecommnjt.dto.ShoppingCartItemDTO;
 import com.ecommnjt.model.ShoppingCart;
-import com.ecommnjt.service.ShoppingCartItemService;
+import com.ecommnjt.service.ShoppingCartItemServiceImpl;
 
 @Controller
 @RequestMapping("/api")
@@ -25,7 +25,7 @@ import com.ecommnjt.service.ShoppingCartItemService;
 public class ShoppingCartItemController {
 	
 	@Autowired
-	private ShoppingCartItemService cartItemService;
+	private ShoppingCartItemServiceImpl cartItemService;
 	
 	@GetMapping("/ShoppingCart/{cartId}/CartItems/{productId}")
 	@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)

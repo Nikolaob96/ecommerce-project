@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ecommnjt.dto.ProductDTO;
 import com.ecommnjt.model.Category;
 import com.ecommnjt.model.Product;
-import com.ecommnjt.service.CategoryService;
-import com.ecommnjt.service.ProductService;
+import com.ecommnjt.service.CategoryServiceImpl;
+import com.ecommnjt.service.ProductServiceImpl;
 
 @RestController
 @RequestMapping("/api")
@@ -28,10 +28,10 @@ import com.ecommnjt.service.ProductService;
 public class ProductController {
 	
 	@Autowired
-	private ProductService productService;
+	private ProductServiceImpl productService;
 	
 	@Autowired
-	private CategoryService categoryService;
+	private CategoryServiceImpl categoryService;
 	
 	@PostMapping("/addProducts")
 	@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)

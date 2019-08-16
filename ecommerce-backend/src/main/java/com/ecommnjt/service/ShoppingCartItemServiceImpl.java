@@ -11,7 +11,7 @@ import com.ecommnjt.model.ShoppingCartItem;
 import com.ecommnjt.repository.ShoppingCartItemRepository;
 
 @Service
-public class ShoppingCartItemService {
+public class ShoppingCartItemServiceImpl implements ShoppingCartItemService{
 	
 	@Autowired
 	private ShoppingCartItemRepository cartRepository;

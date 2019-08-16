@@ -11,7 +11,7 @@ import com.ecommnjt.repository.CategoryRepository;
 import com.ecommnjt.repository.ProductRepository;
 
 @Service
-public class ProductService {
+public class ProductServiceImpl implements ProductService{
 	
 	@Autowired
 	private ProductRepository productRepository;

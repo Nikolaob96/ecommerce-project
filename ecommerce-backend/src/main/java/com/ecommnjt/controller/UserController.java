@@ -20,7 +20,7 @@ import com.ecommnjt.dto.UserDTO;
 import com.ecommnjt.model.User;
 import com.ecommnjt.security.JwtTokenProvider;
 import com.ecommnjt.service.UserDetailsServiceImpl;
-import com.ecommnjt.service.UserService;
+import com.ecommnjt.service.UserServiceImpl;
 
 @RestController
 @RequestMapping("/api")
@@ -34,7 +34,7 @@ public class UserController {
     JwtTokenProvider jwtTokenProvider;
 	
 	@Autowired
-	private UserService userService;
+	private UserServiceImpl userService;
 	
 	@Autowired
 	private UserDetailsServiceImpl userDetailsServiceImpl;

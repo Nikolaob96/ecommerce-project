@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommnjt.dto.MyOrderDTO;
 import com.ecommnjt.dto.OrderDTO;
-import com.ecommnjt.service.OrderService;
+import com.ecommnjt.service.OrderServiceImpl;
 
 @RestController
 @RequestMapping("/api")
@@ -25,7 +25,7 @@ import com.ecommnjt.service.OrderService;
 public class OrderController {
 	
 	@Autowired
-	private OrderService orderService;
+	private OrderServiceImpl orderService;
 	
 	@PostMapping("/Orders")
 	private ResponseEntity<Integer> saveOrder(@RequestBody OrderDTO orderDTO) {

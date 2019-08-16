@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommnjt.dto.ShoppingCartDTO;
 import com.ecommnjt.model.ShoppingCart;
-import com.ecommnjt.service.ShoppingCartService;
+import com.ecommnjt.service.ShoppingCartServiceImpl;
 
 @RestController
 @RequestMapping("/api")
@@ -24,7 +24,7 @@ import com.ecommnjt.service.ShoppingCartService;
 public class ShoppingCartController {
 	
 	@Autowired
-	private ShoppingCartService shoppingCartService;
+	private ShoppingCartServiceImpl shoppingCartService;
 	
 	@PostMapping("/ShoppingCart")
 	@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
