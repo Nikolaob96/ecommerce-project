@@ -31,12 +31,12 @@ public class ProductServiceImpl implements ProductService{
 		return productRepository.getOne(productID);
 	}
 	
-	public void updateProduct(Product product) {
+	public Product updateProduct(Product product) {
 		if(product.getCategory().getId() == 0) {
 			Category category = categoryRepository.findByName(product.getCategory().getName());
 			product.setCategory(category);
 		}
-		productRepository.save(product);
+		return productRepository.save(product);
 	}
 	
 	public void delete(int productId) {

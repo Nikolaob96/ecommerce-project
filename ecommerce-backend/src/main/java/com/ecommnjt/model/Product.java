@@ -30,7 +30,7 @@ public class Product {
 	private int price;
 	@Getter @Setter
 	private String image;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn
     @Getter @Setter
 	private Category category;

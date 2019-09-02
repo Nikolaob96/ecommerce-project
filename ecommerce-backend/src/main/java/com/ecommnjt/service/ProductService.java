@@ -9,6 +9,6 @@ public interface ProductService {
 	public void addProduct(Product product);
 	public List<Product> getProducts();
 	public Product getProduct(int productID);
-	public void updateProduct(Product product);
+	public Product updateProduct(Product product);
 	public void delete(int productId);
 }

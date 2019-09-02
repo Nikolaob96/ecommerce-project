@@ -50,4 +50,13 @@ public class OrderServiceImpl implements OrderService {
 		}
 		return allOrders;
 	}
+
+
+	public void cancelOrder(int orderId) {
+		Order order = orderRepository.getOne(orderId);
+		order.setOrderStatus(OrderStatus.CANCELLED);
+		orderRepository.save(order);
+		
+		
+	}
 }

@@ -1,5 +1,6 @@
 package com.ecommnjt.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,13 @@ public class ShoppingCartItemServiceImpl implements ShoppingCartItemService{
 	@Transactional
 	public void deleteItem(int cartId, int productId) {
 		cartRepository.deleteItem(cartId, productId);
+		
+	}
+
+	public void saveItems(List<ShoppingCartItemDTO> cartItems, int id) {
+		for(ShoppingCartItemDTO cartItem : cartItems) {
+			cartRepository.saveCartItem(0, cartItem.getId(), id, cartItem.getQuantity());
+		}
 		
 	}
 
