@@ -121,12 +121,12 @@ public class ProductController {
 		
 	}
 	
-	@RequestMapping(value = "/products/{productID}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/products/{productId}", method = RequestMethod.DELETE)
 	@ApiOperation(value = "Delete a product.", httpMethod = "DELETE")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success"), @ApiResponse(code = 400, message = "Bad request") })
 	@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 	public ResponseEntity<Void> deleteProduct(
-			@ApiParam(name = "id", value = "id of a product to delete", required = true) @PathVariable int productId) {
+			@ApiParam(name = "productId", value = "id of a product to delete", required = true) @PathVariable int productId) {
 		
 		if(productId == 0) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
