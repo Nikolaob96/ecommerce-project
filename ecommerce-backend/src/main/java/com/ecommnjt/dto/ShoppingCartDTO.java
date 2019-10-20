@@ -22,15 +22,15 @@ public class ShoppingCartDTO {
 	@Getter @Setter
 	private List<ShoppingCartItem> items;
 	
-	public ShoppingCartDTO(ShoppingCart shoppingCart) {
-		if(shoppingCart.getId() != 0) {
-			this.id = shoppingCart.getId();
-		}
-		this.dateCreated = shoppingCart.getDateCreated();
-		this.items = shoppingCart.getCartItem();
-	}
-	
-	public ShoppingCart getShoppingCart(ShoppingCartDTO shoppingCartDTO) {
-		return new ShoppingCart(shoppingCartDTO.getId(), shoppingCartDTO.getDateCreated(), shoppingCartDTO.getItems());
-	}
+//	public ShoppingCartDTO(ShoppingCart shoppingCart) {
+//		if(shoppingCart.getId() != 0) {
+//			this.id = shoppingCart.getId();
+//		}
+//		this.dateCreated = shoppingCart.getDateCreated();
+//		this.items = shoppingCart.getCartItem();
+//	}
+//	
+//	public ShoppingCart getShoppingCart(ShoppingCartDTO shoppingCartDTO) {
+//		return new ShoppingCart(shoppingCartDTO.getId(), shoppingCartDTO.getDateCreated(), shoppingCartDTO.getItems());
+//	}
 }

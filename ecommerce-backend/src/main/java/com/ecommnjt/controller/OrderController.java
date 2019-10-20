@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommnjt.dto.MyOrderDTO;
 import com.ecommnjt.dto.OrderDTO;
+import com.ecommnjt.dto.OrderReviewDTO;
 import com.ecommnjt.service.OrderServiceImpl;
 
 import io.swagger.annotations.ApiOperation;
@@ -54,6 +55,18 @@ public class OrderController {
 		return new ResponseEntity<List<MyOrderDTO>>(ordersList, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/orders-single/{id}", method = RequestMethod.GET)
+	@ApiOperation(value = "Finds single order by its id",
+	notes = "Returns order dto object with specific id",
+	response = OrderReviewDTO.class)
+	@ApiResponse(code = 200, message = "Ok")
+	private ResponseEntity<OrderReviewDTO> findOrderById(
+			@ApiParam(name = "id", value = "id of a specific order", required = true) @PathVariable int id) {
+		OrderReviewDTO orderDTO = orderService.getOrderById(id);
+		
+		return new ResponseEntity<OrderReviewDTO>(orderDTO, HttpStatus.OK);
+	}
+	
 	@RequestMapping(value = "/orders", method = RequestMethod.GET)
 	@ApiOperation(value = "Returns all existing orders",
 	notes = "TO DO...",
@@ -77,6 +90,21 @@ public class OrderController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		orderService.cancelOrder(orderId);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/orders-approve", method = RequestMethod.PUT)
+	@ApiOperation(value = "Approve specific order",
+	notes = "Updates the order status to SHIPPED")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success"),
+			@ApiResponse(code = 400, message = "Bad request") })
+	private ResponseEntity<Void> approveOrder(
+			@ApiParam(name = "id", value = "id of a specific order", required = true) @RequestBody int orderId) {
+		
+		if(orderId == 0) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		orderService.approveOrder(orderId);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

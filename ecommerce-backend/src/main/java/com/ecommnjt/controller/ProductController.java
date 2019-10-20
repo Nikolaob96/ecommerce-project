@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.ecommnjt.dto.ProductDTO;
+import com.ecommnjt.mapper.ProductMapperImpl;
 import com.ecommnjt.model.Category;
 import com.ecommnjt.model.Product;
 import com.ecommnjt.service.CategoryServiceImpl;
@@ -41,6 +42,9 @@ public class ProductController {
 	@Autowired
 	private CategoryServiceImpl categoryService;
 	
+	@Autowired
+	private ProductMapperImpl productMapper;
+	
 	@RequestMapping(value = "/products", method = RequestMethod.POST)
 	@ApiOperation(value = "Adds a new product",
 	notes = "TO DO...",
@@ -56,7 +60,7 @@ public class ProductController {
 		}
 		Category category = categoryService.findByName(productDTO.getCategory());
 		
-		Product product = ProductDTO.getProduct(productDTO);
+		Product product = productMapper.toProduct(productDTO);
 		product.setCategory(category);
 		productService.addProduct(product);
 		
@@ -74,7 +78,7 @@ public class ProductController {
 		List<ProductDTO> productsDTO = new ArrayList<>();
 		
 		for (Product product : products) {
-			productsDTO.add(new ProductDTO(product));
+			productsDTO.add(productMapper.toProductDTO(product));
 		}
 		
 		return new ResponseEntity<>(productsDTO,HttpStatus.OK);
@@ -96,7 +100,7 @@ public class ProductController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		
-		ProductDTO productDTO = new ProductDTO(product);
+		ProductDTO productDTO = productMapper.toProductDTO(product);
 		
 		return new ResponseEntity<>(productDTO, HttpStatus.OK);
 		
@@ -114,9 +118,9 @@ public class ProductController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		
-		Product product = productService.updateProduct(ProductDTO.getProduct(productDTO));
+		Product product = productService.updateProduct(productMapper.toProduct(productDTO));
 		
-		ProductDTO pDTO = new ProductDTO(product);
+		ProductDTO pDTO = productMapper.toProductDTO(product);
 		return new ResponseEntity<>(pDTO, HttpStatus.OK);
 		
 	}

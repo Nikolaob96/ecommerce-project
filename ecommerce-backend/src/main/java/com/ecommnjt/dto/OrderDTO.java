@@ -29,20 +29,20 @@ public class OrderDTO {
 	@Getter @Setter
 	private String orderStatus;
 	
-	public OrderDTO(Order order) {
-		if(order.getOrderId() != 0) {
-			this.orderId = order.getOrderId();
-		}
-		this.shippingInformation = order.getShippingInformation();
-		this.dateCreated = order.getDateCreated();
-		this.user = order.getUser();
-		this.shoppingCart = order.getCart();
-		this.totalPrice = order.getTotalPrice();
-		this.orderStatus = order.getOrderStatus().toString();
-	}
-	
-	public static Order getOrder(OrderDTO orderDTO) {
-		return new Order(orderDTO.getOrderId(), orderDTO.getShippingInformation(), orderDTO.getDateCreated(), orderDTO.getUser(), orderDTO.getShoppingCart(), orderDTO.getTotalPrice(), OrderStatus.PENDING);
-	}
-	
+//	public OrderDTO(Order order) {
+//		if(order.getOrderId() != 0) {
+//			this.orderId = order.getOrderId();
+//		}
+//		this.shippingInformation = order.getShippingInformation();
+//		this.dateCreated = order.getDateCreated();
+//		this.user = order.getUser();
+//		this.shoppingCart = order.getCart();
+//		this.totalPrice = order.getTotalPrice();
+//		this.orderStatus = order.getOrderStatus().toString();
+//	}
+//	
+//	public static Order getOrder(OrderDTO orderDTO) {
+//		return new Order(orderDTO.getOrderId(), orderDTO.getShippingInformation(), orderDTO.getDateCreated(), orderDTO.getUser(), orderDTO.getShoppingCart(), orderDTO.getTotalPrice(), OrderStatus.PENDING);
+//	}
+//	
 }

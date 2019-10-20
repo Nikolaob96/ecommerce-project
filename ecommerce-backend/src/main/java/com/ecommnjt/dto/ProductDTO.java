@@ -24,19 +24,19 @@ public class ProductDTO {
 	@Getter @Setter
 	private String category;
 	
-	public ProductDTO(Product product) {
-		if(product.getId() != 0) {
-			this.id = product.getId();
-		}
-		this.name = product.getName();
-		this.description = product.getDescription();
-		this.price = product.getPrice();
-		this.image = product.getImage();
-		this.category = product.getCategory().getName();
-	}
-	
-	public static Product getProduct(ProductDTO productDTO) {
-		return new Product(productDTO.getId(),productDTO.getName(),productDTO.getDescription(),productDTO.getPrice(),productDTO.getImage(), new Category(0, productDTO.getCategory()));
-	}
+//	public ProductDTO(Product product) {
+//		if(product.getId() != 0) {
+//			this.id = product.getId();
+//		}
+//		this.name = product.getName();
+//		this.description = product.getDescription();
+//		this.price = product.getPrice();
+//		this.image = product.getImage();
+//		this.category = product.getCategory().getName();
+//	}
+//	
+//	public static Product getProduct(ProductDTO productDTO) {
+//		return new Product(productDTO.getId(),productDTO.getName(),productDTO.getDescription(),productDTO.getPrice(),productDTO.getImage(), new Category(0, productDTO.getCategory()));
+//	}
 	
 }

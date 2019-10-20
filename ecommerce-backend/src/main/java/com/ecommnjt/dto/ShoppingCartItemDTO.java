@@ -22,19 +22,19 @@ public class ShoppingCartItemDTO {
 	@Getter @Setter
 	private int quantity;
 	
-	public ShoppingCartItemDTO (ShoppingCartItem shoppingCartItem) {
-		if(shoppingCartItem != null) {
-		
-		if(shoppingCartItem.getId() != 0) {
-			this.id = shoppingCartItem.getId();
-		}
-		this.productId = shoppingCartItem.getProduct().getId();
-		this.shoppingCartId = shoppingCartItem.getId();
-		this.quantity = shoppingCartItem.getQuantity();
-		} 
-	}
-	
-	public static ShoppingCartItem getItem(ShoppingCartItemDTO dto) {
-		return new ShoppingCartItem(dto.getId(),new Product(dto.getProductId(), null, null, 0, null, null), new ShoppingCart(dto.getShoppingCartId(), null, null), dto.getQuantity());
-	}
+//	public ShoppingCartItemDTO (ShoppingCartItem shoppingCartItem) {
+//		if(shoppingCartItem != null) {
+//		
+//		if(shoppingCartItem.getId() != 0) {
+//			this.id = shoppingCartItem.getId();
+//		}
+//		this.productId = shoppingCartItem.getProduct().getId();
+//		this.shoppingCartId = shoppingCartItem.getId();
+//		this.quantity = shoppingCartItem.getQuantity();
+//		} 
+//	}
+//	
+//	public static ShoppingCartItem getItem(ShoppingCartItemDTO dto) {
+//		return new ShoppingCartItem(dto.getId(),new Product(dto.getProductId(), null, null, 0, null, null), new ShoppingCart(dto.getShoppingCartId(), null, null), dto.getQuantity());
+//	}
 }

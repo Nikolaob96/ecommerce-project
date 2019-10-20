@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ecommnjt.dto.ShoppingCartItemDTO;
+import com.ecommnjt.mapper.ShoppingCartItemMapper;
 import com.ecommnjt.model.ShoppingCartItem;
 import com.ecommnjt.repository.ShoppingCartItemRepository;
 
@@ -17,6 +18,9 @@ public class ShoppingCartItemServiceImpl implements ShoppingCartItemService{
 	@Autowired
 	private ShoppingCartItemRepository cartRepository;
 	
+	@Autowired
+	private ShoppingCartItemMapper shoppingCartItemMapper;
+	
 	public ShoppingCartItemDTO getCartItem(int cartId, int productId) {
 		Optional<ShoppingCartItem> cartItem = cartRepository.findByCartAndProduct(cartId, productId);
 		
@@ -24,11 +28,11 @@ public class ShoppingCartItemServiceImpl implements ShoppingCartItemService{
 		if(cartItem.isPresent()) {
 			shoppingCartItem = cartItem.get();
 		}
-		return new ShoppingCartItemDTO(shoppingCartItem);
+		return shoppingCartItemMapper.toShoppingCartItemDTO(shoppingCartItem);
 	}
 
 	public void update(ShoppingCartItemDTO cartItem) {
-		cartRepository.save(ShoppingCartItemDTO.getItem(cartItem));
+		cartRepository.save(shoppingCartItemMapper.toShoppingCartItem(cartItem));
 		
 	}
 	
@@ -43,7 +47,7 @@ public class ShoppingCartItemServiceImpl implements ShoppingCartItemService{
 		if(cartItem.isPresent()) {
 			shoppingCartItem = cartItem.get();
 		}
-		return new ShoppingCartItemDTO(shoppingCartItem);
+		return shoppingCartItemMapper.toShoppingCartItemDTO(shoppingCartItem);
 	}
 	
 	@Transactional

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommnjt.dto.ProductDTO;
 import com.ecommnjt.dto.ShoppingCartDTO;
+import com.ecommnjt.mapper.ShoppingCartMapperImpl;
 import com.ecommnjt.model.ShoppingCart;
 import com.ecommnjt.service.ShoppingCartServiceImpl;
 
@@ -31,6 +32,9 @@ public class ShoppingCartController {
 	@Autowired
 	private ShoppingCartServiceImpl shoppingCartService;
 	
+	@Autowired
+	private ShoppingCartMapperImpl shoppingCartMapper;
+	
 	@RequestMapping(value = "/shopping-cart", method = RequestMethod.POST)
 	@ApiOperation(value = "Adds a new shopping cart",
 	response = ShoppingCartDTO.class)
@@ -39,7 +43,7 @@ public class ShoppingCartController {
 	@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 	public ResponseEntity<ShoppingCartDTO> createShoppingCart() {
 		ShoppingCart shoppingCart = shoppingCartService.createShoppingCart();
-		ShoppingCartDTO shoppingCartDTO = new ShoppingCartDTO(shoppingCart);
+		ShoppingCartDTO shoppingCartDTO = shoppingCartMapper.toShoppingCartDTO(shoppingCart);
 		return new ResponseEntity<>(shoppingCartDTO, HttpStatus.CREATED);
 	}
 	
@@ -56,7 +60,7 @@ public class ShoppingCartController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		
-		return new ResponseEntity<>(new ShoppingCartDTO(shoppingCart), HttpStatus.OK);
+		return new ResponseEntity<>(shoppingCartMapper.toShoppingCartDTO(shoppingCart), HttpStatus.OK);
 	}
 	
 	
